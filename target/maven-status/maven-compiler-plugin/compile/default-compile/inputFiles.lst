@@ -1,5 +1,5 @@
-H:\EclipseEE\aiss-project-template\src\main\java\aiss\utility\OAuthServiceConfiguration.java
-H:\EclipseEE\aiss-project-template\src\main\java\aiss\controller\oauth\GenericAuthController.java
-H:\EclipseEE\aiss-project-template\src\main\java\aiss\HelloWorldServlet.java
-H:\EclipseEE\aiss-project-template\src\main\java\aiss\utility\OAuthRegistry.java
-H:\EclipseEE\aiss-project-template\src\main\java\aiss\controller\oauth\OAuth2Callback.java
+C:\Users\Pablo\Documents\GitHub\rocketstars\src\main\java\aiss\utility\OAuthServiceConfiguration.java
+C:\Users\Pablo\Documents\GitHub\rocketstars\src\main\java\aiss\controller\oauth\OAuth2Callback.java
+C:\Users\Pablo\Documents\GitHub\rocketstars\src\main\java\aiss\HelloWorldServlet.java
+C:\Users\Pablo\Documents\GitHub\rocketstars\src\main\java\aiss\utility\OAuthRegistry.java
+C:\Users\Pablo\Documents\GitHub\rocketstars\src\main\java\aiss\controller\oauth\GenericAuthController.java
