@@ -11,4 +11,24 @@
   <welcome-file-list>
     <welcome-file>index.jsp</welcome-file>
   </welcome-file-list>
+  <error-page>
+    <error-code>404</error-code>
+    <location>/error.jsp</location>
+  </error-page>
+  <error-page>
+    <exception-type>java.lang.Throwable</exception-type>
+    <location>/error.jsp</location>
+  </error-page>
+  
+  <!-- Servlets -->
+  <servlet>
+    <description></description>
+    <display-name>IndexSearchController</display-name>
+    <servlet-name>IndexSearchController</servlet-name>
+    <servlet-class>aiss.controller.lol.IndexSearchController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>IndexSearchController</servlet-name>
+    <url-pattern>/IndexSearchController</url-pattern>
+  </servlet-mapping>
 </web-app>
