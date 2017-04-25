@@ -20,8 +20,8 @@
 			</c:forEach>
 		</table>
 		
-		<c:forEach items="${requestScope.champions}" var="champ">
-			<p><img alt="el diablo mola mas" src="http://ddragon.leagueoflegends.com/cdn/6.24.1/img/champion/<c:out value="${champ.image.full}"/>"> <c:out value="${champ.name}"/> Nivel: <c:out value="${requestScope.masteries[0].championLevel}"/></p>
+		<c:forEach items="${requestScope.champions}" var="champ" varStatus="pool">
+			<p><img alt="el diablo mola mas" src="http://ddragon.leagueoflegends.com/cdn/6.24.1/img/champion/<c:out value="${champ.image.full}"/>"> <c:out value="${champ.name}"/> Nivel: <c:out value="${requestScope.masteries[pool.index].championLevel}"/></p>
 		</c:forEach>
 		
 	</div>
