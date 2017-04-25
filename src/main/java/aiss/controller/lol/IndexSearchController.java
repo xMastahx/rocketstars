@@ -1,6 +1,8 @@
 package aiss.controller.lol;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -11,6 +13,8 @@ import javax.servlet.http.HttpServletResponse;
 import aiss.model.lol.PlayerStatSummary;
 import aiss.model.lol.Summoner;
 import aiss.model.lol.SummonerSummary;
+import aiss.model.lol.champion.Champion;
+import aiss.model.lol.champion.ChampionMastery;
 import aiss.model.resources.LoLResource;
 
 /**
@@ -39,9 +43,21 @@ public class IndexSearchController extends HttpServlet {
 			Summoner invocador = lol.getSummoner(summoner);
 			if(invocador!=null){
 				SummonerSummary resumen = lol.getSummonerSummary(invocador.getId());
+				ChampionMastery[] maestrias = lol.getChampionMastery(invocador.getId());
+				//response.getWriter().append("hey "+maestrias[0].getChampionLevel()+"    "+maestrias[0].getChampionPoints());
+				List<Champion> list = new ArrayList<Champion>();
+				for(int i=0;i<5;i++){
+					list.add(lol.getChampionData(maestrias[i].getChampionId()));
+				}
+				//Champion campeon = lol.getChampionData(maestrias[0].getChampionId());
+				//response.getWriter().append(campeon.toString());
 				
 				request.setAttribute("summoner",invocador);
 				request.setAttribute("stats", resumen.getPlayerStatSummaries());
+				request.setAttribute("masteries", maestrias);
+				request.setAttribute("champions", list);
+				
+				
 				rd = request.getRequestDispatcher("/summary.jsp");	
 			}
 		}else{
