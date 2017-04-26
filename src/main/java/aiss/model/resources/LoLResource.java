@@ -9,6 +9,7 @@ import aiss.model.lol.Summoner;
 import aiss.model.lol.SummonerSummary;
 import aiss.model.lol.champion.Champion;
 import aiss.model.lol.champion.ChampionMastery;
+import aiss.model.lol.league.League;
 
 public class LoLResource {
 	private static final String LOL_API_KEY = "RGAPI-ad93d607-ea76-4425-bc3f-9a4f9f23e1f1";
@@ -35,6 +36,11 @@ public class LoLResource {
 	public Champion getChampionData(Long championID) throws UnsupportedEncodingException{
 		ClientResource cr = new ClientResource("https://euw1.api.riotgames.com/lol/static-data/v3/champions/"+championID+"?champData=image&api_key="+LOL_API_KEY);
 		return cr.get(Champion.class);
+	}
+	
+	public League getLeagueData(Integer summonerID) throws UnsupportedEncodingException{
+		ClientResource cr = new ClientResource("https://euw.api.riotgames.com/api/lol/EUW/v2.5/league/by-summoner/"+summonerID+"/entry?api_key=RGAPI-01DE0062-F07C-4A50-89BB-8167AE54EE8B");
+		return cr.get(League.class);
 	}
 	
 }
