@@ -52,13 +52,11 @@ public class IndexSearchController extends HttpServlet {
 				}
 				//Champion campeon = lol.getChampionData(maestrias[0].getChampionId());
 				//response.getWriter().append(campeon.toString());
-				League liga = lol.getLeagueData(invocador.getId());
 
 				request.setAttribute("summoner",invocador);
 				request.setAttribute("stats", resumen.getPlayerStatSummaries());
 				request.setAttribute("masteries", maestrias);
 				request.setAttribute("champions", list);
-				request.setAttribute("leagues", liga);
 				
 				rd = request.getRequestDispatcher("/summary.jsp");	
 			}

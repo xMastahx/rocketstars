@@ -31,4 +31,14 @@
     <servlet-name>IndexSearchController</servlet-name>
     <url-pattern>/IndexSearchController</url-pattern>
   </servlet-mapping>
+    <servlet>
+    <description></description>
+    <display-name>TweetSummaryController</display-name>
+    <servlet-name>TweetSummaryController</servlet-name>
+    <servlet-class>aiss.controller.twitter.TweetSummaryController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>TweetSummaryController</servlet-name>
+    <url-pattern>/TweetSummaryController</url-pattern>
+  </servlet-mapping>
 </web-app>

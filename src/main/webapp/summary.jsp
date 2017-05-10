@@ -20,25 +20,18 @@
 			</c:forEach>
 		</table>
 		
-		<table>
-			<tr>
-				<th>Cola</th>
-				<th>Liga</th>
-			</tr>
-			<c:forEach items="${requestScope.leagues}" var="league">
-				<tr>
-					<td><c:out value="${league.queue}"/></td>
-					<td><c:out value="${league.tier}"/></td>
-				</tr>
-			</c:forEach>
-		</table>
-		
 		
 		
 		<c:forEach items="${requestScope.champions}" var="champ" varStatus="pool">
 			<p><img alt="el diablo mola mas" src="http://ddragon.leagueoflegends.com/cdn/6.24.1/img/champion/<c:out value="${champ.image.full}"/>"> <c:out value="${champ.name}"/> Nivel: <c:out value="${requestScope.masteries[pool.index].championLevel}"/></p>
 		</c:forEach>
+
+		<form class="form" method="post" action="TweetSummaryController">   
+     	<button class="btn" type="submit" name="req" value="tweet">Tweet this</button>
+     	
+			</form> 
 		
 	</div>
+			
 </body>
 </html>
