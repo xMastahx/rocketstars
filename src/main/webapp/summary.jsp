@@ -32,7 +32,8 @@
      	
 		</form> 
 		
-		<form class="form" method="post" action="PostTweetController">   
+		<form class="form" method="post" action="PostTweetController"> 
+					<input type="hidden" name="invotw" value="${requestScope.summoner.name}"></input>  
      	<button class="btn" type="submit" name="req" value="tweet">Tweet this</button>
      	
 			</form> 

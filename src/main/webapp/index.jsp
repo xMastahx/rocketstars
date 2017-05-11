@@ -7,7 +7,9 @@
 		<h2 class="tittle">This is LoL Stats</h2>
 		<p>Esto es como la descripción de la pag y lo que hace, abe o no?</p>
 	</div>
-	<div class="telegramShare" style="display: <c:if test="${empty requestScope.visibilidad}">none</c:if>">¡Felicidades, lo has compartido por telegram!</div>
+	<div class="telegramShare" style="display: <c:if test="${empty requestScope.visibilidadtg}">none</c:if>">¡Felicidades, lo has compartido por telegram!</div>
+	<div class="twitterShare" style="display: <c:if test="${empty requestScope.visibilidadtw}">none</c:if>">¡Felicidades, lo has compartido por Twitter!</div>
+	
 	<form class="form" action="IndexSearchController" method="post">
 		<input class="summoner" type="text" placeholder="Nombre de invocador" name="summoner"></input>
 		<br>

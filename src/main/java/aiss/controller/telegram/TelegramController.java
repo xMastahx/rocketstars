@@ -35,7 +35,7 @@ public class TelegramController extends HttpServlet {
 		if(res!="null" && res !=null){
 			TelegramResource tg = new TelegramResource();
 			tg.sendMessage(res);
-			request.setAttribute("visibilidad", "true");
+			request.setAttribute("visibilidadtg", "true");
 		}
 		//Summoner sumQueNoSuma = (Summoner) request.getAttribute("pene");
 		//message = message + sumQueNoSuma.getName();

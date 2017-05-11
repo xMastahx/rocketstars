@@ -3,6 +3,7 @@ package aiss.controller.twitter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -45,21 +46,33 @@ public class PostTweetController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		RequestDispatcher rd = null;
-		
-		String summoner = request.getParameter("summoner");
-		request.setAttribute("pene", summoner);
-		if(summoner!=null){
+			
+		String summoner = request.getParameter("invotw");
+			if(summoner!=null){
 			LoLResource lol = new LoLResource();
 			Summoner invocador = lol.getSummoner(summoner);
-			if(invocador!=null){
-				SummonerSummary resumen = lol.getSummonerSummary(invocador.getId());
+
 				ChampionMastery[] maestrias = lol.getChampionMastery(invocador.getId());
+				//response.getWriter().append("hey "+maestrias[0].getChampionLevel()+"    "+maestrias[0].getChampionPoints());
 				List<Champion> list = new ArrayList<Champion>();
 				for(int i=0;i<5;i++){
 					list.add(lol.getChampionData(maestrias[i].getChampionId()));
 				}
+				
+				
+				 String tweet = "Summoner: " + invocador.getName();
+				 
+				 Random randomGenerator = new Random();
+			     int urfLevel = randomGenerator.nextInt(1000);
+			     if (urfLevel == 666){
+			    	 tweet = tweet + "\n URF. Level: There's not";
+			     }
+			     else{
+			    	 for(int i=0;i<5;i++){
+			    		 tweet = tweet + "\n" + list.get(i).getName() + ". Level: " + maestrias[i].getChampionLevel();
+			    	 }
+			     }
 			
-		
 		ConfigurationBuilder cb = new ConfigurationBuilder();
 		cb.setDebugEnabled(true)
 		  .setOAuthConsumerKey("Uu4jzuV8D8DITGWQK2QOVmJ8B")
@@ -69,21 +82,24 @@ public class PostTweetController extends HttpServlet {
 		TwitterFactory tf = new TwitterFactory(cb.build());
 		Twitter twitter = tf.getInstance();
 		 Status status;
+		 
 		try {
-			status = twitter.updateStatus("Mira mamá se tuitear desde la API ");
+			status = twitter.updateStatus(tweet);
 		    System.out.println("Successfully updated the status to [" + status.getText() + "].");
 		} catch (TwitterException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+		request.setAttribute("visibilidadtw", "true");
+
 		rd = request.getRequestDispatcher("/");
 		rd.forward(request, response);
-		
+			}else{
+				rd = request.getRequestDispatcher("/error.jsp");
+
 			}
-		}
-		
-	}
+			}
+
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
