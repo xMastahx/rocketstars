@@ -41,7 +41,6 @@ public class IndexSearchController extends HttpServlet {
 		// TODO Auto-generated method stub+
 		RequestDispatcher rd = null;
 		String summoner = request.getParameter("summoner");
-		request.setAttribute("pene", summoner);
 		if(summoner!=null){
 			LoLResource lol = new LoLResource();
 			Summoner invocador = lol.getSummoner(summoner);

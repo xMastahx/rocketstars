@@ -1,6 +1,8 @@
 package aiss.controller.twitter;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -9,6 +11,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import aiss.model.lol.Summoner;
+import aiss.model.lol.SummonerSummary;
+import aiss.model.lol.champion.Champion;
+import aiss.model.lol.champion.ChampionMastery;
+import aiss.model.resources.LoLResource;
 import aiss.model.resources.TelegramResource;
 import twitter4j.Status;
 import twitter4j.Twitter;
@@ -40,6 +46,20 @@ public class PostTweetController extends HttpServlet {
 
 		RequestDispatcher rd = null;
 		
+		String summoner = request.getParameter("summoner");
+		request.setAttribute("pene", summoner);
+		if(summoner!=null){
+			LoLResource lol = new LoLResource();
+			Summoner invocador = lol.getSummoner(summoner);
+			if(invocador!=null){
+				SummonerSummary resumen = lol.getSummonerSummary(invocador.getId());
+				ChampionMastery[] maestrias = lol.getChampionMastery(invocador.getId());
+				List<Champion> list = new ArrayList<Champion>();
+				for(int i=0;i<5;i++){
+					list.add(lol.getChampionData(maestrias[i].getChampionId()));
+				}
+			
+		
 		ConfigurationBuilder cb = new ConfigurationBuilder();
 		cb.setDebugEnabled(true)
 		  .setOAuthConsumerKey("Uu4jzuV8D8DITGWQK2QOVmJ8B")
@@ -59,6 +79,9 @@ public class PostTweetController extends HttpServlet {
 		
 		rd = request.getRequestDispatcher("/");
 		rd.forward(request, response);
+		
+			}
+		}
 		
 	}
 
