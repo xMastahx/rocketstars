@@ -34,34 +34,31 @@ public class PostTweetController extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-    
-
+   
     
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	 	String consumerKey = "T5t491RXfcv7rpruBMNaW2Pux";
-        String consumerSecret = "H0HQjSRLjKMUnwXubeljy7JrxKOEqkkiP6077DEniy2KQj4Cva";
-        String accessToken = "2387637578-pwujUuNBaibsmznthO4Tvx1fluLNH8zrAuG29h5";
-        String accessSecret = "AWCTd5wC5Qi1Dn2zvmyqzYkw4ZdjbunVSNPF6G4Li3IYy";
 
-        ConfigurationBuilder cb = new ConfigurationBuilder();
-        cb.setDebugEnabled(true)
-            .setOAuthConsumerKey(consumerKey)
-            .setOAuthConsumerSecret(consumerSecret)
-            .setOAuthAccessToken(accessToken)
-            .setOAuthAccessTokenSecret(accessSecret);
-        String tweet = "Hi";
-        try 
-        {
-           TwitterFactory factory = new TwitterFactory(cb.build());
-           Twitter twitter = factory.getInstance();
-
-           System.out.println(twitter.getScreenName());
-           Status status = twitter.updateStatus(tweet);
-           System.out.println("Successfully updated the status to [" + status.getText() + "].");
-            }catch (TwitterException te) {
-               te.printStackTrace();
-               System.exit(-1);
-            }
+		RequestDispatcher rd = null;
+		
+		ConfigurationBuilder cb = new ConfigurationBuilder();
+		cb.setDebugEnabled(true)
+		  .setOAuthConsumerKey("Uu4jzuV8D8DITGWQK2QOVmJ8B")
+		  .setOAuthConsumerSecret("RLCbtAStfa9ZrH0Jb8aoy6FBxMBCJgGjJtccViqZf40iEheFrB")
+		  .setOAuthAccessToken("2387637578-4fNSRuq954xHdH2g33eqUPOZxmXvx61VfxHKCVN")
+		  .setOAuthAccessTokenSecret("gRJISVzofhuHwD5KZOHwuT4Ds5I7GuVR0DoaPBLTLXvyV");
+		TwitterFactory tf = new TwitterFactory(cb.build());
+		Twitter twitter = tf.getInstance();
+		 Status status;
+		try {
+			status = twitter.updateStatus("Mira mamá se tuitear desde la API ");
+		    System.out.println("Successfully updated the status to [" + status.getText() + "].");
+		} catch (TwitterException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		rd = request.getRequestDispatcher("/");
+		rd.forward(request, response);
 		
 	}
 
