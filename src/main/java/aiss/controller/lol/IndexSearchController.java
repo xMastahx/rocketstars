@@ -55,7 +55,7 @@ public class IndexSearchController extends HttpServlet {
 				}
 				//Champion campeon = lol.getChampionData(maestrias[0].getChampionId());
 				//response.getWriter().append(campeon.toString());
-
+			
 				request.setAttribute("summoner",invocador);
 				request.setAttribute("stats", resumen.getPlayerStatSummaries());
 				request.setAttribute("masteries", maestrias);

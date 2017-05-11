@@ -5,4 +5,4 @@ aiss\controller\telegram\TelegramController.class
 aiss\model\telegram\sendMessage\SendMessageResult.class
 aiss\model\telegram\sendMessage\Entity.class
 aiss\model\resources\TelegramResource.class
-aiss\controller\twitter\TweetSummaryController.class
+aiss\controller\twitter\PostTweetController.class

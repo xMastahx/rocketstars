@@ -28,11 +28,11 @@
 		
 		<form class="form" method="post" action="TelegramController">
 			<input type="hidden" name="invo" value="${requestScope.summoner.name}"></input>
-     		<button class="btn" type="submit" name="req" value="tweet">Camparte tu resumen en Telegram!</button>
+     		<button class="btn" type="submit" name="req" value="tweet">Comparte tu resumen en Telegram!</button>
      	
 		</form> 
 		
-		<form class="form" method="post" action="TweetSummaryController">   
+		<form class="form" method="post" action="PostTweetController">   
      	<button class="btn" type="submit" name="req" value="tweet">Tweet this</button>
      	
 			</form> 

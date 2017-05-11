@@ -31,15 +31,15 @@
     <servlet-name>IndexSearchController</servlet-name>
     <url-pattern>/IndexSearchController</url-pattern>
   </servlet-mapping>
-    <servlet>
+<servlet>
     <description></description>
-    <display-name>TweetSummaryController</display-name>
-    <servlet-name>TweetSummaryController</servlet-name>
-    <servlet-class>aiss.controller.twitter.TweetSummaryController</servlet-class>
+    <display-name>PostTweetController</display-name>
+    <servlet-name>PostTweetController</servlet-name>
+    <servlet-class>aiss.controller.twitter.PostTweetController</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>TweetSummaryController</servlet-name>
-    <url-pattern>/TweetSummaryController</url-pattern>
+    <servlet-name>PostTweetController</servlet-name>
+    <url-pattern>/PostTweetController</url-pattern>
   </servlet-mapping>
   
   <servlet>
