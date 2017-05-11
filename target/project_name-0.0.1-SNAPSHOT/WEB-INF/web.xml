@@ -41,4 +41,15 @@
     <servlet-name>TweetSummaryController</servlet-name>
     <url-pattern>/TweetSummaryController</url-pattern>
   </servlet-mapping>
+  
+  <servlet>
+    <description></description>
+    <display-name>TelegramController</display-name>
+    <servlet-name>TelegramController</servlet-name>
+    <servlet-class>aiss.controller.telegram.TelegramController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>TelegramController</servlet-name>
+    <url-pattern>/TelegramController</url-pattern>
+  </servlet-mapping>
 </web-app>

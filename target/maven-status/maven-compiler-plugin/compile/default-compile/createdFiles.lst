@@ -1,0 +1,8 @@
+aiss\model\telegram\sendMessage\From.class
+aiss\model\telegram\sendMessage\Result.class
+aiss\model\telegram\sendMessage\Chat.class
+aiss\controller\telegram\TelegramController.class
+aiss\model\telegram\sendMessage\SendMessageResult.class
+aiss\model\telegram\sendMessage\Entity.class
+aiss\model\resources\TelegramResource.class
+aiss\controller\twitter\TweetSummaryController.class

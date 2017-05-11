@@ -10,8 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.google.appengine.api.capabilities.CapabilitiesPb.CapabilityConfig.Status;
-
+import twitter4j.Status;
 import aiss.model.lol.PlayerStatSummary;
 import aiss.model.lol.Summoner;
 import aiss.model.lol.SummonerSummary;
@@ -26,6 +25,7 @@ import twitter4j.auth.AccessToken;
 import twitter4j.auth.OAuthAuthorization;
 import twitter4j.conf.ConfigurationBuilder;
 import twitter4j.conf.ConfigurationContext;
+import twitter4j.Status;
 
 /**
  * Servlet implementation class IndexSearchController

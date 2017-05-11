@@ -17,6 +17,8 @@ import aiss.model.lol.champion.Champion;
 import aiss.model.lol.champion.ChampionMastery;
 import aiss.model.lol.league.League;
 import aiss.model.resources.LoLResource;
+import aiss.model.resources.TelegramResource;
+import aiss.model.telegram.sendMessage.SendMessageResult;
 
 /**
  * Servlet implementation class IndexSearchController
@@ -36,9 +38,10 @@ public class IndexSearchController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		// TODO Auto-generated method stub+
 		RequestDispatcher rd = null;
 		String summoner = request.getParameter("summoner");
+		request.setAttribute("pene", summoner);
 		if(summoner!=null){
 			LoLResource lol = new LoLResource();
 			Summoner invocador = lol.getSummoner(summoner);
