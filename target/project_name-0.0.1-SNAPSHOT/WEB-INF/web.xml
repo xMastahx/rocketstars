@@ -52,4 +52,25 @@
     <servlet-name>TelegramController</servlet-name>
     <url-pattern>/TelegramController</url-pattern>
   </servlet-mapping>
+  
+  <servlet>
+    <description></description>
+    <display-name>PlayerSummaryController</display-name>
+    <servlet-name>PlayerSummaryController</servlet-name>
+    <servlet-class>aiss.controller.lol.PlayerSummaryController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>PlayerSummaryController</servlet-name>
+    <url-pattern>/PlayerSummaryController</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>WIP</display-name>
+    <servlet-name>WIP</servlet-name>
+    <servlet-class>aiss.controller.lol.WIP</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>WIP</servlet-name>
+    <url-pattern>/WIP</url-pattern>
+  </servlet-mapping>
 </web-app>

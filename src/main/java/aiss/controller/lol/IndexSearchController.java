@@ -2,7 +2,11 @@ package aiss.controller.lol;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -16,6 +20,11 @@ import aiss.model.lol.SummonerSummary;
 import aiss.model.lol.champion.Champion;
 import aiss.model.lol.champion.ChampionMastery;
 import aiss.model.lol.league.League;
+import aiss.model.lol.rune.Rune;
+import aiss.model.lol.rune.RuneSummary;
+import aiss.model.lol.runes.Page;
+import aiss.model.lol.runes.RunesSummary;
+import aiss.model.lol.runes.Slot;
 import aiss.model.resources.LoLResource;
 import aiss.model.resources.TelegramResource;
 import aiss.model.telegram.sendMessage.SendMessageResult;
@@ -38,30 +47,22 @@ public class IndexSearchController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub+
+		
 		RequestDispatcher rd = null;
 		String summoner = request.getParameter("summoner");
-		if(summoner!=null){
-			LoLResource lol = new LoLResource();
-			Summoner invocador = lol.getSummoner(summoner);
-			if(invocador!=null){
-				SummonerSummary resumen = lol.getSummonerSummary(invocador.getId());
-				ChampionMastery[] maestrias = lol.getChampionMastery(invocador.getId());
-				//response.getWriter().append("hey "+maestrias[0].getChampionLevel()+"    "+maestrias[0].getChampionPoints());
-				List<Champion> list = new ArrayList<Champion>();
-				for(int i=0;i<5;i++){
-					list.add(lol.getChampionData(maestrias[i].getChampionId()));
-				}
-				//Champion campeon = lol.getChampionData(maestrias[0].getChampionId());
-				//response.getWriter().append(campeon.toString());
-			
-				request.setAttribute("summoner",invocador);
-				request.setAttribute("stats", resumen.getPlayerStatSummaries());
-				request.setAttribute("masteries", maestrias);
-				request.setAttribute("champions", list);
-				
-				rd = request.getRequestDispatcher("/summary.jsp");	
+		String valor = request.getParameter("req");
+
+		if(summoner!=null && valor!=null){
+			if(valor.equals("summary")){
+				rd = request.getRequestDispatcher("PlayerSummaryController");
+			}else if(valor.equals("playing")){
+				rd = request.getRequestDispatcher("WIP");
+			}else if(valor.equals("history")){
+				rd = request.getRequestDispatcher("WIP");
+			}else if(valor.equals("masteries")){
+				rd = request.getRequestDispatcher("WIP");
 			}
+			
 		}else{
 			rd = request.getRequestDispatcher("/error.jsp");
 		}
