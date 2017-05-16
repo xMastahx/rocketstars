@@ -1,3 +1,4 @@
+aiss\controller\lol\ChampMasteriesController.class
 aiss\model\telegram\sendMessage\From.class
 aiss\model\telegram\sendMessage\Result.class
 aiss\controller\lol\PlayerSummaryController.class

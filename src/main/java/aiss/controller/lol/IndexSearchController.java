@@ -60,7 +60,7 @@ public class IndexSearchController extends HttpServlet {
 			}else if(valor.equals("history")){
 				rd = request.getRequestDispatcher("WIP");
 			}else if(valor.equals("masteries")){
-				rd = request.getRequestDispatcher("WIP");
+				rd = request.getRequestDispatcher("ChampMasteriesController");
 			}
 			
 		}else{

@@ -63,6 +63,7 @@
     <servlet-name>PlayerSummaryController</servlet-name>
     <url-pattern>/PlayerSummaryController</url-pattern>
   </servlet-mapping>
+  
   <servlet>
     <description></description>
     <display-name>WIP</display-name>
@@ -72,5 +73,16 @@
   <servlet-mapping>
     <servlet-name>WIP</servlet-name>
     <url-pattern>/WIP</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <description></description>
+    <display-name>ChampMasteriesController</display-name>
+    <servlet-name>ChampMasteriesController</servlet-name>
+    <servlet-class>aiss.controller.lol.ChampMasteriesController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ChampMasteriesController</servlet-name>
+    <url-pattern>/ChampMasteriesController</url-pattern>
   </servlet-mapping>
 </web-app>
