@@ -129,9 +129,10 @@ body {
 }
 
 .elementoCentral{
-	background-color: black;
+	background-color: rgba(0, 0, 0, 0.5);
 	margin-left:10%;
 	margin-right:10%;
+	border-radius: 	1%;
 }
 
 .elementoCentral p{
@@ -181,5 +182,6 @@ body {
 .runa{
 	text-align: center;
 }
+
 
 /* Página de partidas */
