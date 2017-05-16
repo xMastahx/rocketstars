@@ -58,8 +58,10 @@ public class PlayerSummaryController extends HttpServlet {
 				ChampionMastery[] maestrias = lol.getChampionMastery(invocador.getId());
 				//response.getWriter().append("hey "+maestrias[0].getChampionLevel()+"    "+maestrias[0].getChampionPoints());
 				List<Champion> list = new ArrayList<Champion>();
-				for(int i=0;i<5;i++){
-					list.add(lol.getChampionData(maestrias[i].getChampionId()));
+				if(maestrias.length>=5){
+					for(int i=0;i<5;i++){
+						list.add(lol.getChampionData(maestrias[i].getChampionId()));
+					}
 				}
 				//Champion campeon = lol.getChampionData(maestrias[0].getChampionId());
 				//response.getWriter().append(campeon.toString());
