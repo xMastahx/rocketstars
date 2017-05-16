@@ -2,10 +2,12 @@
 <%@include file="includes/header.jsp"%>
 
 <body>
-	<p>Nombre de invocador: <c:out value="${requestScope.summoner.name}"/></p>
-	<h3>Estadisticas to wapas</h3>
+	<h1 class="titulo">Resumen del invocador</h1>
+<div class="elementoCentral">
+	<p class="textoGen">Nombre de invocador: <c:out value="${requestScope.summoner.name}"/></p>
+	<h3 id="Statistics">Estadísticas</h3>
 	<div class="stats">
-		<table>
+		<table class="tablaStats">
 			<tr>
 				<th>Modo de juego</th>
 				<th>Victorias</th>
@@ -43,6 +45,6 @@
 			</form> 
 		
 	</div>
-			
+</div>				
 </body>
 </html>
