@@ -2,13 +2,13 @@
 <%@include file="includes/header.jsp"%>
 
 <body>
-	<div id="banner"><h1 id="bannertext">Tol banner wapo ahí</h1></div>
+	<div id="banner"><h1 id="bannertext">League of Legends Stats</h1></div>
 	<div class="description">
-		<h2 class="tittle">This is LoL Stats</h2>
-		<p>Esto es como la descripción de la pag y lo que hace, abe o no?</p>
+		<h2>LOL Stats, tu web de estadísticas del MOBA más popular</h2>
+		<p>Descripción de la página</p>
 	</div>
-	<div class="telegramShare" style="display: <c:if test="${empty requestScope.visibilidadtg}">none</c:if>">¡Felicidades, lo has compartido por telegram!</div>
-	<div class="twitterShare" style="display: <c:if test="${empty requestScope.visibilidadtw}">none</c:if>">¡Felicidades, lo has compartido por Twitter!</div>
+	<div class="telegramShare" style="display: <c:if test="${empty requestScope.visibilidadtg}">none</c:if>"><p>¡Felicidades, lo has compartido por telegram!</p></div>
+	<div class="twitterShare" style="display: <c:if test="${empty requestScope.visibilidadtw}">none</c:if>"><p>¡Felicidades, lo has compartido por Twitter!</p></div>
 	
 	<form class="form" action="IndexSearchController" method="post">
 		<input class="summoner" type="text" placeholder="Nombre de invocador" name="summoner" required></input>
