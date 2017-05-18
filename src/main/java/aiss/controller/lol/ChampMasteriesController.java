@@ -57,7 +57,7 @@ public class ChampMasteriesController extends HttpServlet {
 				ChampionMastery[] maestrias = lol.getChampionMastery(invocador.getId());
 				List<Champion> list = new ArrayList<Champion>();
 				if(maestrias.length>=1){
-					for(int i=0;i<5;i++){
+					for(int i=0;i<20;i++){
 						list.add(lol.getChampionData(maestrias[i].getChampionId(), true));
 					}
 				}

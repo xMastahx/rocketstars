@@ -85,4 +85,12 @@
     <servlet-name>ChampMasteriesController</servlet-name>
     <url-pattern>/ChampMasteriesController</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <servlet-name>riot</servlet-name>
+    <jsp-file>/riot.txt</jsp-file>
+</servlet>
+<servlet-mapping>
+    <servlet-name>riot</servlet-name>
+    <url-pattern>/riot.txt</url-pattern>
+</servlet-mapping>
 </web-app>
