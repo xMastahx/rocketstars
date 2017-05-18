@@ -178,7 +178,10 @@ body {
 .campeon{
 	text-align:center;
 }
-
+.campeon-mini{
+	height: 30px;
+	width: 30px;
+}
 .runa{
 	text-align: center;
 }

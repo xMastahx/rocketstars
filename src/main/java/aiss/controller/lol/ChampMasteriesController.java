@@ -34,64 +34,80 @@ import aiss.model.telegram.sendMessage.SendMessageResult;
  */
 public class ChampMasteriesController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public ChampMasteriesController() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public ChampMasteriesController() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub+
 		RequestDispatcher rd = null;
 		String summoner = request.getParameter("summoner");
-		if(summoner!=null){
+		if (summoner != null) {
 			LoLResource lol = new LoLResource();
 			Summoner invocador = lol.getSummoner(summoner);
-			if(invocador!=null){
+			if (invocador != null) {
 				ChampionMastery[] maestrias = lol.getChampionMastery(invocador.getId());
 				List<Champion> list = new ArrayList<Champion>();
-				if(maestrias.length>=1){
-					for(int i=0;i<20;i++){
-						list.add(lol.getChampionData(maestrias[i].getChampionId(), true));
+				if (maestrias.length >= 1) {
+					Integer counter = 0;
+					Long championLevelCounter = 0L;
+					for (int i = 0; i < maestrias.length; i++) {
+						Champion champ = lol.getChampionData(maestrias[i].getChampionId(), true);
+						list.add(champ);
+						championLevelCounter = championLevelCounter + maestrias[i].getChampionPoints();
+						counter++;
+						if (counter >= 9) {
+							try {
+								Thread.sleep(12000);
+								counter = 0;
+							} catch (InterruptedException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
+						}
 					}
 				}
-				//Champion campeon = lol.getChampionData(maestrias[0].getChampionId());
-				//response.getWriter().append(campeon.toString());
-			
-				request.setAttribute("summoner",invocador);
+				// Champion campeon =
+				// lol.getChampionData(maestrias[0].getChampionId());
+				// response.getWriter().append(campeon.toString());
+
+				request.setAttribute("summoner", invocador);
 				request.setAttribute("masteries", maestrias);
 				request.setAttribute("champions", list);
-				
-				
-				
-				
-				rd = request.getRequestDispatcher("/champMasteries.jsp");	
+
+				rd = request.getRequestDispatcher("/champMasteries.jsp");
 			}
-		}else{
+		} else {
 			rd = request.getRequestDispatcher("/error.jsp");
 		}
-		
-		
-//		response.getWriter().append("Served at: "+summoner + " "+invocador.getAccountId()+"\n");
-//		
-//		for(PlayerStatSummary e:resumen.getPlayerStatSummaries()){
-//			response.getWriter().append(e.getWins() + " partidas ganadas en "+ e.getPlayerStatSummaryType()+"\n");
-//		}
-		
-		
+
+		// response.getWriter().append("Served at: "+summoner + "
+		// "+invocador.getAccountId()+"\n");
+		//
+		// for(PlayerStatSummary e:resumen.getPlayerStatSummaries()){
+		// response.getWriter().append(e.getWins() + " partidas ganadas en "+
+		// e.getPlayerStatSummaryType()+"\n");
+		// }
+
 		rd.forward(request, response);
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}

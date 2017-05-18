@@ -11,7 +11,7 @@
 		
 		
 		<c:forEach items="${requestScope.champions}" var="champ" varStatus="pool">
-			<p class="campeon"><img alt="Campeón" src="http://ddragon.leagueoflegends.com/cdn/6.24.1/img/champion/<c:out value="${champ.image.full}"/>"> <c:out value="${champ.name}"/> Nivel: <c:out value="${requestScope.masteries[pool.index].championLevel}"/></p>
+			<p class="campeon"><img alt="Campeón" class="campeon-mini" src="http://ddragon.leagueoflegends.com/cdn/6.24.1/img/champion/<c:out value="${champ.image.full}"/>"> <c:out value="${champ.name}"/> Nivel: <c:out value="${requestScope.masteries[pool.index].championLevel}"/></p>
 		</c:forEach>
 		
 		
