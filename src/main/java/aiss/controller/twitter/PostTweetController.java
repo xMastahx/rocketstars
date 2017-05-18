@@ -17,6 +17,7 @@ import aiss.model.lol.champion.Champion;
 import aiss.model.lol.champion.ChampionMastery;
 import aiss.model.resources.LoLResource;
 import aiss.model.resources.TelegramResource;
+import aiss.model.resources.TwitterResource;
 import twitter4j.Status;
 import twitter4j.Twitter;
 import twitter4j.TwitterException;
@@ -72,24 +73,10 @@ public class PostTweetController extends HttpServlet {
 			    		 tweet = tweet + "\n" + list.get(i).getName() + ". Level: " + maestrias[i].getChampionLevel();
 			    	 }
 			     }
-			
-		ConfigurationBuilder cb = new ConfigurationBuilder();
-		cb.setDebugEnabled(true)
-		  .setOAuthConsumerKey("Uu4jzuV8D8DITGWQK2QOVmJ8B")
-		  .setOAuthConsumerSecret("RLCbtAStfa9ZrH0Jb8aoy6FBxMBCJgGjJtccViqZf40iEheFrB")
-		  .setOAuthAccessToken("2387637578-4fNSRuq954xHdH2g33eqUPOZxmXvx61VfxHKCVN")
-		  .setOAuthAccessTokenSecret("gRJISVzofhuHwD5KZOHwuT4Ds5I7GuVR0DoaPBLTLXvyV");
-		TwitterFactory tf = new TwitterFactory(cb.build());
-		Twitter twitter = tf.getInstance();
-		 Status status;
-		 
-		try {
-			status = twitter.updateStatus(tweet);
-		    System.out.println("Successfully updated the status to [" + status.getText() + "].");
-		} catch (TwitterException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+			     
+			     TwitterResource tw = new TwitterResource();
+			     tw.postTweet(tweet);
+		
 		request.setAttribute("visibilidadtw", "true");
 
 		rd = request.getRequestDispatcher("/");
