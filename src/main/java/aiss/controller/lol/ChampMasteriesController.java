@@ -58,7 +58,7 @@ public class ChampMasteriesController extends HttpServlet {
 				List<Champion> list = new ArrayList<Champion>();
 				if(maestrias.length>=1){
 					for(int i=0;i<maestrias.length;i++){
-						list.add(lol.getChampionData(maestrias[i].getChampionId()));
+						//list.add(lol.getChampionData(maestrias[i].getChampionId()));
 					}
 				}
 				//Champion campeon = lol.getChampionData(maestrias[0].getChampionId());

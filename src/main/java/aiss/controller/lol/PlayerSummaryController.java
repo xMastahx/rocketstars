@@ -60,7 +60,7 @@ public class PlayerSummaryController extends HttpServlet {
 				List<Champion> list = new ArrayList<Champion>();
 				if(maestrias.length>=5){
 					for(int i=0;i<5;i++){
-						list.add(lol.getChampionData(maestrias[i].getChampionId()));
+						list.add(lol.getChampionData(maestrias[i].getChampionId(),true));
 					}
 				}
 				//Champion campeon = lol.getChampionData(maestrias[0].getChampionId());

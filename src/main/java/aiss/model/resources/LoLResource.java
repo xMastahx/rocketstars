@@ -15,6 +15,7 @@ import aiss.model.lol.runes.RunesSummary;
 
 public class LoLResource {
 	private static final String LOL_API_KEY = "RGAPI-ad93d607-ea76-4425-bc3f-9a4f9f23e1f1";
+	private static final String LOL_API_KEY2 = "RGAPI-01DE0062-F07C-4A50-89BB-8167AE54EE8B";
 	private static final String LOL_URI = "https://euw1.api.riotgames.com/lol";
 	private static final Logger log = Logger.getLogger(LoLResource.class.getName());
 	
@@ -36,8 +37,13 @@ public class LoLResource {
 		return res;
 	}
 	
-	public Champion getChampionData(Long championID) throws UnsupportedEncodingException{
-		ClientResource cr = new ClientResource(LOL_URI + "/static-data/v3/champions/"+championID+"?champData=image&api_key="+LOL_API_KEY);
+	public Champion getChampionData(Long championID,boolean b) throws UnsupportedEncodingException{
+		ClientResource cr = null;
+		if(b){
+			cr = new ClientResource(LOL_URI + "/static-data/v3/champions/"+championID+"?champData=image&api_key="+LOL_API_KEY2);
+		}else{
+			cr = new ClientResource(LOL_URI + "/static-data/v3/champions/"+championID+"?champData=image&api_key="+LOL_API_KEY);
+		}
 		return cr.get(Champion.class);
 	}
 	

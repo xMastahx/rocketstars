@@ -56,7 +56,7 @@ public class PostTweetController extends HttpServlet {
 				//response.getWriter().append("hey "+maestrias[0].getChampionLevel()+"    "+maestrias[0].getChampionPoints());
 				List<Champion> list = new ArrayList<Champion>();
 				for(int i=0;i<5;i++){
-					list.add(lol.getChampionData(maestrias[i].getChampionId()));
+					list.add(lol.getChampionData(maestrias[i].getChampionId(),true));
 				}
 				
 				
