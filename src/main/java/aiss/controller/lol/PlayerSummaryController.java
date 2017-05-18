@@ -98,7 +98,6 @@ public class PlayerSummaryController extends HttpServlet {
 				}
 				
 				request.setAttribute("runes", runes);
-				//Aqui acaba la locura xD
 				
 				rd = request.getRequestDispatcher("/summary.jsp");	
 			}
