@@ -8,6 +8,8 @@
 <title>Error page</title>
 </head>
 <body>
-<h3>No hemos podido encontrar al invocador, por favor <a href="index.jsp">prueba otra vez</a>.</h3>
+	<div  class="Error">
+		<h3>No hemos podido encontrar al invocador, por favor <a href="index.jsp">prueba otra vez</a>.</h3>
+	</div>
 </body>
 </html>
