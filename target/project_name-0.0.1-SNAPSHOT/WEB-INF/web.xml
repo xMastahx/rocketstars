@@ -19,8 +19,6 @@
     <exception-type>java.lang.Throwable</exception-type>
     <location>/error.jsp</location>
   </error-page>
-  
-  <!-- Servlets -->
   <servlet>
     <description></description>
     <display-name>IndexSearchController</display-name>
@@ -31,7 +29,7 @@
     <servlet-name>IndexSearchController</servlet-name>
     <url-pattern>/IndexSearchController</url-pattern>
   </servlet-mapping>
-<servlet>
+  <servlet>
     <description></description>
     <display-name>PostTweetController</display-name>
     <servlet-name>PostTweetController</servlet-name>
@@ -41,7 +39,6 @@
     <servlet-name>PostTweetController</servlet-name>
     <url-pattern>/PostTweetController</url-pattern>
   </servlet-mapping>
-  
   <servlet>
     <description></description>
     <display-name>TelegramController</display-name>
@@ -52,7 +49,6 @@
     <servlet-name>TelegramController</servlet-name>
     <url-pattern>/TelegramController</url-pattern>
   </servlet-mapping>
-  
   <servlet>
     <description></description>
     <display-name>PlayerSummaryController</display-name>
@@ -63,7 +59,6 @@
     <servlet-name>PlayerSummaryController</servlet-name>
     <url-pattern>/PlayerSummaryController</url-pattern>
   </servlet-mapping>
-  
   <servlet>
     <description></description>
     <display-name>WIP</display-name>
@@ -74,7 +69,6 @@
     <servlet-name>WIP</servlet-name>
     <url-pattern>/WIP</url-pattern>
   </servlet-mapping>
-  
   <servlet>
     <description></description>
     <display-name>ChampMasteriesController</display-name>
@@ -88,9 +82,19 @@
   <servlet>
     <servlet-name>riot</servlet-name>
     <jsp-file>/riot.txt</jsp-file>
-</servlet>
-<servlet-mapping>
+  </servlet>
+  <servlet-mapping>
     <servlet-name>riot</servlet-name>
     <url-pattern>/riot.txt</url-pattern>
-</servlet-mapping>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>HistoryController</display-name>
+    <servlet-name>HistoryController</servlet-name>
+    <servlet-class>aiss.controller.lol.HistoryController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>HistoryController</servlet-name>
+    <url-pattern>/HistoryController</url-pattern>
+  </servlet-mapping>
 </web-app>

@@ -10,6 +10,8 @@ import aiss.model.lol.SummonerSummary;
 import aiss.model.lol.champion.Champion;
 import aiss.model.lol.champion.ChampionMastery;
 import aiss.model.lol.league.League;
+import aiss.model.lol.match.Match;
+import aiss.model.lol.matchlist.Matchlist;
 import aiss.model.lol.rune.RuneSummary;
 import aiss.model.lol.runes.RunesSummary;
 
@@ -64,4 +66,17 @@ public class LoLResource {
 		return res;
 	}
 	
+	public Matchlist getMatchListV3(Integer summonerID) throws UnsupportedEncodingException{
+		System.out.print("pus");
+		ClientResource cr = new ClientResource(LOL_URI + "/match/v3/matchlists/by-account/" + summonerID+"?api_key="+LOL_API_KEY);
+		System.out.print("sup");
+		return cr.get(Matchlist.class);
+	}
+	
+	public Match getMatchV3(Long gameID) throws UnsupportedEncodingException{
+		System.out.print("sup1");
+		ClientResource cr = new ClientResource(LOL_URI + "/match/v3/matches/" + gameID+"?api_key="+LOL_API_KEY);
+		System.out.print("sup2");
+		return cr.get(Match.class);
+	}
 }
