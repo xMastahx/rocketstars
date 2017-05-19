@@ -30,7 +30,7 @@
 		
 		
 		<c:forEach items="${requestScope.runes}" var="rune">
-			<p class="runa"><c:out value="${rune.key.description}"/> * <c:out value="${rune.value}"/></p>
+			<p class="runa"><c:out value="${rune}"/></p>
 		</c:forEach>
 		<form class="form" method="post" action="TelegramController">
 			<input type="hidden" name="invo" value="${requestScope.summoner.name}"></input>

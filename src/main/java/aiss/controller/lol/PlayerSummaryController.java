@@ -97,7 +97,16 @@ public class PlayerSummaryController extends HttpServlet {
 					}
 				}
 				
-				request.setAttribute("runes", runes);
+				List<String> runeList = new ArrayList<String>();
+				for (RuneSummary r : runes.keySet()) {
+					String runeType = r.getRune().getType();
+					String description = r.getDescription();
+					Integer value = runes.get(r);
+					String rune = formatRune(runeType) + ": " + description + "*"+ value;
+					runeList.add(rune);
+				}
+				
+				request.setAttribute("runes", runeList);
 				
 				rd = request.getRequestDispatcher("/summary.jsp");	
 			}
@@ -115,6 +124,20 @@ public class PlayerSummaryController extends HttpServlet {
 		
 		rd.forward(request, response);
 	}
+
+	private String formatRune(String runeType) {
+		String res = "unknown";
+		switch(runeType){
+		case "red": res="Mark";
+			break;
+		case "yellow": res = "Seal";
+			break;
+		case "blue": res = "Glyph";
+			break;
+		case "black": res = "Quint";
+		}
+	return res;
+}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)

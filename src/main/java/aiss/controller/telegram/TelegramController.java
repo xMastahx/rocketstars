@@ -1,6 +1,11 @@
 package aiss.controller.telegram;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Random;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -9,46 +14,130 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import aiss.model.lol.Summoner;
+import aiss.model.lol.champion.Champion;
+import aiss.model.lol.champion.ChampionMastery;
+import aiss.model.lol.rune.RuneSummary;
+import aiss.model.lol.runes.Page;
+import aiss.model.lol.runes.RunesSummary;
+import aiss.model.lol.runes.Slot;
+import aiss.model.resources.LoLResource;
 import aiss.model.resources.TelegramResource;
+import aiss.model.resources.TwitterResource;
 
 /**
  * Servlet implementation class IndexSearchController
  */
 public class TelegramController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public TelegramController() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		RequestDispatcher rd = null;
-		String res = request.getParameter("invo");
-		if(res!="null" && res !=null){
-			TelegramResource tg = new TelegramResource();
-			tg.sendMessage(res);
-			request.setAttribute("visibilidadtg", "true");
-		}
-		//Summoner sumQueNoSuma = (Summoner) request.getAttribute("pene");
-		//message = message + sumQueNoSuma.getName();
-		
-		rd = request.getRequestDispatcher("/");
-		rd.forward(request, response);
-		
+	public TelegramController() {
+		super();
+		// TODO Auto-generated constructor stub
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		RequestDispatcher rd = null;
+		String summoner = request.getParameter("invo");
+		if (summoner != null) {
+			LoLResource lol = new LoLResource();
+			Summoner invocador = lol.getSummoner(summoner);
+
+			ChampionMastery[] maestrias = lol.getChampionMastery(invocador.getId());
+			List<Champion> list = new ArrayList<Champion>();
+			for (int i = 0; i < 5; i++) {
+				list.add(lol.getChampionData(maestrias[i].getChampionId(), true));
+			}
+
+			String res = "Summoner: " + invocador.getName();
+
+			Random randomGenerator = new Random();
+			int urfLevel = randomGenerator.nextInt(1000);
+			if (urfLevel == 666) {
+				res = res + "\n URF. Level: There's not";
+			} else {
+				for (int i = 0; i < 5; i++) {
+					res = res + "\n" + list.get(i).getName() + ". Level: " + maestrias[i].getChampionLevel();
+				}
+			}
+
+			// Runas
+
+			RunesSummary runas = lol.getRunes(invocador.getId());
+			List<Page> paginas = runas.getPages();
+			Map<Integer, Integer> runeCount = new HashMap<Integer, Integer>();
+
+			for (Page e : runas.getPages()) {
+				if (e.getCurrent() == true && e.getSlots() != null) {
+					for (Slot s : e.getSlots()) {
+						Integer runeID = s.getRuneId();
+						if (runeCount.containsKey(runeID)) {
+							runeCount.put(runeID, runeCount.get(runeID) + 1);
+						} else {
+							runeCount.put(runeID, 1);
+						}
+					}
+				}
+			}
+			Map<RuneSummary, Integer> runes = new HashMap<RuneSummary, Integer>();
+			if (!runeCount.isEmpty()) {
+				for (Integer a : runeCount.keySet()) {
+					RuneSummary r = lol.getRune(a);
+					runes.put(r, runeCount.get(a));
+				}
+			}
+			// Generación de strings de runas
+
+			res = res + "\n"+ "\n" + "Runes:" + "\n";
+
+			for (RuneSummary r : runes.keySet()) {
+				String runeType = r.getRune().getType();
+				String description = r.getDescription();
+				Integer value = runes.get(r);
+				String rune = formatRune(runeType) + ": " + description + "*"+ value;
+				res = res + "\n" + rune;
+			}
+
+			if (res != "null" && res != null) {
+				TelegramResource tg = new TelegramResource();
+				tg.sendMessage(res);
+				request.setAttribute("visibilidadtg", "true");
+			}
+
+			rd = request.getRequestDispatcher("/");
+			rd.forward(request, response);
+		}
+
+	}
+
+	private String formatRune(String runeType) {
+			String res = "unknown";
+			switch(runeType){
+			case "red": res="Mark";
+				break;
+			case "yellow": res = "Seal";
+				break;
+			case "blue": res = "Glyph";
+				break;
+			case "black": res = "Quint";
+			}
+		return res;
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
