@@ -13,8 +13,12 @@
 		<c:forEach items="${requestScope.champions}" var="champ" varStatus="pool">
 			<p class="campeon"><img alt="Campeón" class="campeon-mini" src="http://ddragon.leagueoflegends.com/cdn/6.24.1/img/champion/<c:out value="${champ.image.full}"/>"> <c:out value="${champ.name}"/> Nivel: <c:out value="${requestScope.masteries[pool.index].championLevel}"/></p>
 		</c:forEach>
+			
+		<c:forEach items="${requestScope.niveles}" var="nivel" varStatus="pool">
+			<p class="masterylevels">Número de campeones de nivel <c:out value="${nivel}"/>: <c:out value="${requestScope.cantidadnivel[pool.index]}"/></p>
+		</c:forEach>
 		
-		
+			<p class="championpoints">Número total de puntos de maestría: <c:out value="${requestScope.puntosmaestria}"/></p>
 		
 		<form class="form" method="post" action="TelegramController">
 			<input type="hidden" name="invo" value="${requestScope.summoner.name}"></input>

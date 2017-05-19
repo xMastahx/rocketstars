@@ -2,9 +2,12 @@ package aiss.controller.lol;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
@@ -60,11 +63,23 @@ public class ChampMasteriesController extends HttpServlet {
 				List<Champion> list = new ArrayList<Champion>();
 				if (maestrias.length >= 1) {
 					Integer counter = 0;
+					Map<Integer, Integer> levels = new HashMap<Integer, Integer>();
+					levels.put(1, 0);
+					levels.put(2, 0);
+					levels.put(3, 0);
+					levels.put(4, 0);
+					levels.put(5, 0);
+					levels.put(6, 0);
+					levels.put(7, 0);
 					Long championLevelCounter = 0L;
-					for (int i = 0; i < maestrias.length; i++) {
+					for (int i = 0; i <maestrias.length; i++) {
 						Champion champ = lol.getChampionData(maestrias[i].getChampionId(), true);
 						list.add(champ);
 						championLevelCounter = championLevelCounter + maestrias[i].getChampionPoints();
+						Integer level =  maestrias[i].getChampionLevel().intValue();
+						Integer updatedLevel = levels.get(level);
+						updatedLevel++;
+						levels.put(level,updatedLevel);
 						counter++;
 						if (counter >= 9) {
 							try {
@@ -76,6 +91,13 @@ public class ChampMasteriesController extends HttpServlet {
 							}
 						}
 					}
+					Set<Integer> levelSet = levels.keySet();
+					List<Integer> levelList = new ArrayList<Integer>(levelSet);
+					Collection<Integer> levelAmmountCollection = levels.values();
+					List<Integer> levelAmmount = new ArrayList<Integer>(levelAmmountCollection);
+					request.setAttribute("niveles", levelList);
+					request.setAttribute("cantidadnivel", levelAmmount);
+					request.setAttribute("puntosmaestria", championLevelCounter);
 				}
 				// Champion campeon =
 				// lol.getChampionData(maestrias[0].getChampionId());
@@ -84,6 +106,7 @@ public class ChampMasteriesController extends HttpServlet {
 				request.setAttribute("summoner", invocador);
 				request.setAttribute("masteries", maestrias);
 				request.setAttribute("champions", list);
+
 
 				rd = request.getRequestDispatcher("/champMasteries.jsp");
 			}
