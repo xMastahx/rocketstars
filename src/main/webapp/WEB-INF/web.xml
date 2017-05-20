@@ -41,6 +41,16 @@
   </servlet-mapping>
   <servlet>
     <description></description>
+    <display-name>PostTweetMasteriesController</display-name>
+    <servlet-name>PostTweetMasteriesController</servlet-name>
+    <servlet-class>aiss.controller.twitter.PostTweetMasteriesController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>PostTweetMasteriesController</servlet-name>
+    <url-pattern>/PostTweetMasteriesController</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
     <display-name>TelegramController</display-name>
     <servlet-name>TelegramController</servlet-name>
     <servlet-class>aiss.controller.telegram.TelegramController</servlet-class>
@@ -49,6 +59,17 @@
     <servlet-name>TelegramController</servlet-name>
     <url-pattern>/TelegramController</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>TelegramMasteriesController</display-name>
+    <servlet-name>TelegramMasteriesController</servlet-name>
+    <servlet-class>aiss.controller.telegram.TelegramMasteriesController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>TelegramMasteriesController</servlet-name>
+    <url-pattern>/TelegramMasteriesController</url-pattern>
+  </servlet-mapping>
+  
   <servlet>
     <description></description>
     <display-name>PlayerSummaryController</display-name>

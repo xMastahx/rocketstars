@@ -2,7 +2,7 @@
 <%@include file="includes/header.jsp"%>
 
 <body>
-	<h1 class="titulo">Resumen del invocador</h1>
+	<h1 class="titulo">Maestría del jugador</h1>
 <div class="elementoCentral">
 	<p class="textoGen">Nombre de invocador: <c:out value="${requestScope.summoner.name}"/></p>
 	<h3 id="Statistics">Maestrias de campeones</h3>
@@ -11,23 +11,26 @@
 		
 		
 		<c:forEach items="${requestScope.champions}" var="champ" varStatus="pool">
-			<p class="campeon"><img alt="Campeón" class="campeon-mini" src="http://ddragon.leagueoflegends.com/cdn/6.24.1/img/champion/<c:out value="${champ.image.full}"/>"> <c:out value="${champ.name}"/> Nivel: <c:out value="${requestScope.masteries[pool.index].championLevel}"/></p>
+			<p class="campeon"><img alt="Campeón" class="campeon-mini" src="http://ddragon.leagueoflegends.com/cdn/6.24.1/img/champion/<c:out value="${champ.image.full}"/>"> <c:out value="${champ.name}"/> Nivel: <c:out value="${requestScope.masteries[pool.index].championLevel}"/>
+			. <c:out value="${requestScope.masteries[pool.index].championPoints}"/> puntos.</p>
 		</c:forEach>
 			
-		<c:forEach items="${requestScope.niveles}" var="nivel" varStatus="pool">
-			<p class="masterylevels">Número de campeones de nivel <c:out value="${nivel}"/>: <c:out value="${requestScope.cantidadnivel[pool.index]}"/></p>
+		<c:forEach items="${requestScope.masteryinfo}" var="mastery" varStatus="pool">
+			<p class="masterylevels"><c:out value="${mastery}"/></p>
 		</c:forEach>
 		
-			<p class="championpoints">Número total de puntos de maestría: <c:out value="${requestScope.puntosmaestria}"/></p>
 		
-		<form class="form" method="post" action="TelegramController">
+		<form class="form" method="post" action="TelegramMasteriesController">
 			<input type="hidden" name="invo" value="${requestScope.summoner.name}"></input>
+			<input type="hidden" name="masteryinfo" value="${requestScope.masteryinfo}"></input>
+			
      		<button class="btn" type="submit" name="req" value="tweet">Comparte tu resumen en Telegram!</button>
      	
 		</form> 
 		
-		<form class="form" method="post" action="PostTweetController"> 
-					<input type="hidden" name="invotw" value="${requestScope.summoner.name}"></input>  
+		<form class="form" method="post" action="PostTweetMasteriesController">
+					<input type="hidden" name="tweetmasteryinfo" value="${requestScope.tweetmasteryinfo}"></input>
+					<input type="hidden" name="invotw" value="${requestScope.summoner.name}"></input>
      	<button class="btn" type="submit" name="req" value="tweet">Tweet this</button>
      	
 			</form> 

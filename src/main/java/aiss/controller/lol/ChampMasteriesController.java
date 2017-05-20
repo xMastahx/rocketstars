@@ -72,14 +72,14 @@ public class ChampMasteriesController extends HttpServlet {
 					levels.put(6, 0);
 					levels.put(7, 0);
 					Long championLevelCounter = 0L;
-					for (int i = 0; i <maestrias.length; i++) {
+					for (int i = 0; i < maestrias.length; i++) {
 						Champion champ = lol.getChampionData(maestrias[i].getChampionId(), true);
 						list.add(champ);
 						championLevelCounter = championLevelCounter + maestrias[i].getChampionPoints();
-						Integer level =  maestrias[i].getChampionLevel().intValue();
+						Integer level = maestrias[i].getChampionLevel().intValue();
 						Integer updatedLevel = levels.get(level);
 						updatedLevel++;
-						levels.put(level,updatedLevel);
+						levels.put(level, updatedLevel);
 						counter++;
 						if (counter >= 9) {
 							try {
@@ -95,9 +95,43 @@ public class ChampMasteriesController extends HttpServlet {
 					List<Integer> levelList = new ArrayList<Integer>(levelSet);
 					Collection<Integer> levelAmmountCollection = levels.values();
 					List<Integer> levelAmmount = new ArrayList<Integer>(levelAmmountCollection);
-					request.setAttribute("niveles", levelList);
-					request.setAttribute("cantidadnivel", levelAmmount);
-					request.setAttribute("puntosmaestria", championLevelCounter);
+
+					// Lista a mostrar en champMasteries.jsp
+
+					List<String> masteryInfo = new ArrayList<String>();
+
+					// Añade información de cuantos campeones tiene el jugador
+					// con cada nivel de maestría.
+
+					for (int i = 0; i < levelList.size(); i++) {
+						String s = "Número de campeones de nivel " + levelList.get(i) + ": " + levelAmmount.get(i);
+						masteryInfo.add(s);
+					}
+
+					String suma = "Número total de puntos de maestría: " + championLevelCounter;
+					masteryInfo.add(suma);
+
+					request.setAttribute("masteryinfo", masteryInfo);
+
+					/*
+					 * Esta lista será la información mandada por tweet, no se
+					 * mostrará en la web pero será mandada al controlador
+					 * PostTweetMasteriesController, para mostrar la información
+					 * sin tener que repetir peticiones a la API.
+					 */
+
+					List<String> tweetMasteryInfo = new ArrayList<String>();
+					
+					for (int i = 0; i<levelList.size(); i++){
+						String s = "Nivel " + levelList.get(i) +": "+ levelAmmount.get(i);
+						tweetMasteryInfo.add(s);
+					}
+					
+					tweetMasteryInfo.add("Total: " + championLevelCounter + " puntos");
+					
+					request.setAttribute("tweetmasteryinfo", tweetMasteryInfo);
+
+					
 				}
 				// Champion campeon =
 				// lol.getChampionData(maestrias[0].getChampionId());
@@ -106,7 +140,6 @@ public class ChampMasteriesController extends HttpServlet {
 				request.setAttribute("summoner", invocador);
 				request.setAttribute("masteries", maestrias);
 				request.setAttribute("champions", list);
-
 
 				rd = request.getRequestDispatcher("/champMasteries.jsp");
 			}
