@@ -14,9 +14,8 @@
 		<input class="summoner" type="text" placeholder="Nombre de invocador" name="summoner" required></input>
 		<br>
 		<button class="btn" type="submit" name="req" value="summary">Resumen del invocador</button>
-		<button class="btn" type="submit" name="req" value="playing">Partida actual</button>
-		<br>
 		<button class="btn" type="submit" name="req" value="history">Historial de partidas</button>
+		<br>
 		<button class="btn" type="submit" name="req" value="masteries">Maestrias de campeones</button>
 	</form>
 </body>

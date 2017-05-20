@@ -55,8 +55,6 @@ public class IndexSearchController extends HttpServlet {
 		if(summoner!=null && valor!=null){
 			if(valor.equals("summary")){
 				rd = request.getRequestDispatcher("PlayerSummaryController");
-			}else if(valor.equals("playing")){
-				rd = request.getRequestDispatcher("WIP");
 			}else if(valor.equals("history")){
 				rd = request.getRequestDispatcher("HistoryController");
 			}else if(valor.equals("masteries")){

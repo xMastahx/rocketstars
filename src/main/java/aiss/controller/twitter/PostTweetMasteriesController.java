@@ -50,7 +50,7 @@ public class PostTweetMasteriesController extends HttpServlet {
 			
 		String summoner = request.getParameter("invotw");
 		String display = request.getParameter("tweetmasteryinfo");
-		String[] displayArray = display.split(",");
+		String[] displayArray = display.split(", ");
 		List<String> displayList = new ArrayList<String>();
 		for (String s : displayArray){
 			displayList.add(s.trim());
