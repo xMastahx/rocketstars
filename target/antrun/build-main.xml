@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <project name="maven-antrun-" default="main"  >
 <target name="main">
-  <property name="target.webapp.dir" value="C:\Users\mabor\Documents\Informatica\Segundo\AISS\Proyecto\rocketstars\target/project_name-0.0.1-SNAPSHOT"/>
-  <property name="src.webapp.dir" value="C:\Users\mabor\Documents\Informatica\Segundo\AISS\Proyecto\rocketstars/src/main/webapp"/>
+  <property name="target.webapp.dir" value="C:\Users\Pablo\Documents\GitKraken\rocketstars\target/project_name-0.0.1-SNAPSHOT"/>
+  <property name="src.webapp.dir" value="C:\Users\Pablo\Documents\GitKraken\rocketstars/src/main/webapp"/>
   <sync todir="${target.webapp.dir}" includeEmptyDirs="true" verbose="true">
     <fileset dir="${src.webapp.dir}"/>
     <preserveintarget>
