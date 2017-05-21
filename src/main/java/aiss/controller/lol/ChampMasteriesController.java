@@ -86,7 +86,6 @@ public class ChampMasteriesController extends HttpServlet {
 								Thread.sleep(12000);
 								counter = 0;
 							} catch (InterruptedException e) {
-								// TODO Auto-generated catch block
 								e.printStackTrace();
 							}
 						}
@@ -102,7 +101,9 @@ public class ChampMasteriesController extends HttpServlet {
 
 					// Añade información de cuantos campeones tiene el jugador
 					// con cada nivel de maestría.
-
+					
+					masteryInfo.add("Summoner: " + invocador.getName());
+					
 					for (int i = 0; i < levelList.size(); i++) {
 						String s = "Número de campeones de nivel " + levelList.get(i) + ": " + levelAmmount.get(i);
 						masteryInfo.add(s);
@@ -111,7 +112,7 @@ public class ChampMasteriesController extends HttpServlet {
 					String suma = "Número total de puntos de maestría: " + championLevelCounter;
 					masteryInfo.add(suma);
 
-					request.setAttribute("masteryinfo", masteryInfo);
+					request.setAttribute("telegram", masteryInfo);
 
 					/*
 					 * Esta lista será la información mandada por tweet, no se
@@ -120,22 +121,19 @@ public class ChampMasteriesController extends HttpServlet {
 					 * sin tener que repetir peticiones a la API.
 					 */
 
-					List<String> tweetMasteryInfo = new ArrayList<String>();
-					
+					List<String> tweet = new ArrayList<String>();
+					tweet.add("Summoner: " + invocador.getName());
 					for (int i = 0; i<levelList.size(); i++){
 						String s = "Nivel " + levelList.get(i) +": "+ levelAmmount.get(i);
-						tweetMasteryInfo.add(s);
+						tweet.add(s);
 					}
 					
-					tweetMasteryInfo.add("Total: " + championLevelCounter + " puntos");
+					tweet.add("Total: " + championLevelCounter + " puntos");
 					
-					request.setAttribute("tweetmasteryinfo", tweetMasteryInfo);
+					request.setAttribute("tweet", tweet);
 
 					
 				}
-				// Champion campeon =
-				// lol.getChampionData(maestrias[0].getChampionId());
-				// response.getWriter().append(campeon.toString());
 
 				request.setAttribute("summoner", invocador);
 				request.setAttribute("masteries", maestrias);

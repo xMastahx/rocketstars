@@ -1,6 +1,5 @@
 aiss\model\telegram\sendMessage\Chat.class
 aiss\controller\lol\HistoryController.class
-aiss\controller\telegram\TelegramHistoryController.class
 aiss\model\lol\match\Player.class
 aiss\controller\twitter\PostTweetController.class
 aiss\model\lol\match\XpDiffPerMinDeltas.class
@@ -25,17 +24,14 @@ aiss\controller\lol\ChampMasteriesController.class
 aiss\model\lol\match\Stats.class
 aiss\model\lol\match\DamageTakenDiffPerMinDeltas.class
 aiss\model\lol\match\Match.class
-aiss\controller\twitter\PostTweetMasteriesController.class
 aiss\model\lol\match\Mastery.class
 aiss\model\lol\runes\Slot.class
 aiss\model\lol\match\Ban.class
 aiss\model\telegram\sendMessage\SendMessageResult.class
-aiss\controller\twitter\PostTweetHistoryController.class
 aiss\model\telegram\sendMessage\Entity.class
 aiss\model\lol\match\Participant.class
 aiss\model\lol\rune\Rune.class
 aiss\model\lol\match\ParticipantIdentity.class
-aiss\controller\telegram\TelegramMasteriesController.class
 aiss\model\lol\matchlist\Match.class
 aiss\model\lol\runes\Page.class
 aiss\model\lol\match\CreepsPerMinDeltas.class

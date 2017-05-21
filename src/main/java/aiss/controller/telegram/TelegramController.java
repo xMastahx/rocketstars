@@ -46,90 +46,26 @@ public class TelegramController extends HttpServlet {
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		RequestDispatcher rd = null;
-		String summoner = request.getParameter("invo");
-		if (summoner != null) {
-			LoLResource lol = new LoLResource();
-			Summoner invocador = lol.getSummoner(summoner);
-
-			ChampionMastery[] maestrias = lol.getChampionMastery(invocador.getId());
-			List<Champion> list = new ArrayList<Champion>();
-			for (int i = 0; i < 5; i++) {
-				list.add(lol.getChampionData(maestrias[i].getChampionId(), true));
-			}
-
-			String res = "Summoner: " + invocador.getName();
-
-			Random randomGenerator = new Random();
-			int urfLevel = randomGenerator.nextInt(1000);
-			if (urfLevel == 666) {
-				res = res + "\n URF. Level: There's not";
-			} else {
-				for (int i = 0; i < 5; i++) {
-					res = res + "\n" + list.get(i).getName() + ". Level: " + maestrias[i].getChampionLevel();
-				}
-			}
-
-			// Runas
-
-			RunesSummary runas = lol.getRunes(invocador.getId());
-			List<Page> paginas = runas.getPages();
-			Map<Integer, Integer> runeCount = new HashMap<Integer, Integer>();
-
-			for (Page e : runas.getPages()) {
-				if (e.getCurrent() == true && e.getSlots() != null) {
-					for (Slot s : e.getSlots()) {
-						Integer runeID = s.getRuneId();
-						if (runeCount.containsKey(runeID)) {
-							runeCount.put(runeID, runeCount.get(runeID) + 1);
-						} else {
-							runeCount.put(runeID, 1);
-						}
-					}
-				}
-			}
-			Map<RuneSummary, Integer> runes = new HashMap<RuneSummary, Integer>();
-			if (!runeCount.isEmpty()) {
-				for (Integer a : runeCount.keySet()) {
-					RuneSummary r = lol.getRune(a);
-					runes.put(r, runeCount.get(a));
-				}
-			}
-			// Generación de strings de runas
-
-			res = res + "\n"+ "\n" + "Runes:" + "\n";
-
-			for (RuneSummary r : runes.keySet()) {
-				String runeType = r.getRune().getType();
-				String description = r.getDescription();
-				Integer value = runes.get(r);
-				String rune = formatRune(runeType) + ": " + description + "*"+ value;
-				res = res + "\n" + rune;
-			}
-
-			if (res != "null" && res != null) {
-				TelegramResource tg = new TelegramResource();
-				tg.sendMessage(res);
-				request.setAttribute("visibilidadtg", "true");
-			}
-
-			rd = request.getRequestDispatcher("/");
-			rd.forward(request, response);
+		String display = request.getParameter("telegram");
+		String[] displayArray = display.split(", ");
+		List<String> displayList = new ArrayList<String>();
+		for (String s : displayArray){
+			displayList.add(s.trim());
 		}
+		
+		String res = "";
+		for (String s : displayList){
+			res = res + "\n" + s;
+		}
+		res = res.replaceAll("\\[", "").replaceAll("\\]","");
 
-	}
+		TelegramResource tg = new TelegramResource();
+		tg.sendMessage(res);
+		request.setAttribute("visibilidadtg", "true");
 
-	private String formatRune(String runeType) {
-			String res = "unknown";
-			switch(runeType){
-			case "red": res="Mark";
-				break;
-			case "yellow": res = "Seal";
-				break;
-			case "blue": res = "Glyph";
-				break;
-			case "black": res = "Quint";
-			}
-		return res;
+		rd = request.getRequestDispatcher("/");
+		rd.forward(request, response);
+
 	}
 
 	/**

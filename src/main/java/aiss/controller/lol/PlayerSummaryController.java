@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
@@ -107,6 +108,26 @@ public class PlayerSummaryController extends HttpServlet {
 				}
 				
 				request.setAttribute("runes", runeList);
+				
+				// TWITTER Y TELEGRAM
+				
+				List<String> tweet = new ArrayList<String>();
+				
+				tweet.add("Summoner: " + invocador.getName());
+
+				Random randomGenerator = new Random();
+				int urfLevel = randomGenerator.nextInt(1000);
+				if (urfLevel == 666) {
+					tweet.add("URF. Level: There's not");
+				} else {
+					for (int i = 0; i < 5; i++) {
+						tweet.add(list.get(i).getName() + ". Level: " + maestrias[i].getChampionLevel());
+					}
+				}
+				
+				request.setAttribute("tweet", tweet);
+				request.setAttribute("telegram", tweet);
+				
 				
 				rd = request.getRequestDispatcher("/summary.jsp");	
 			}

@@ -202,10 +202,12 @@ public class HistoryController extends HttpServlet {
 
 			for (int i = 0; i < 5; i++) {
 				telegram.add("Partida " + (i + 1) + ": \n");
-				telegram.add("Campeón: " + champions.get(i) + ". Resultado" + kills.get(i) + "\\" + deaths.get(i) + "\\"
+				telegram.add("Campeón: " + champions.get(i) + ". Resultado " + kills.get(i) + "\\" + deaths.get(i) + "\\"
 						+ assists.get(i));
 				telegram.add("KDA " + kda.get(i));
 			}
+			
+			telegram.add("KDA medio: " + globalkda);
 
 			request.setAttribute("telegram", telegram);
 

@@ -17,14 +17,14 @@
 	<p>KDA medio: <c:out value="${requestScope.globalkda}"/></p>
 	</div>
 	
-	<form class="form" method="post" action="TelegramHistoryController">
+	<form class="form" method="post" action="TelegramController">
 			<input type="hidden" name="telegram" value="${requestScope.telegram}"></input>
 			
      		<button class="btn" type="submit" name="req" value="tweet">Comparte tu resumen en Telegram!</button>
      	
 		</form> 
 		
-		<form class="form" method="post" action="PostTweetHistoryController">
+		<form class="form" method="post" action="PostTweetController">
 					<input type="hidden" name="tweet" value="${requestScope.tweet}"></input>
      	<button class="btn" type="submit" name="req" value="tweet">Tweet this</button>
      	

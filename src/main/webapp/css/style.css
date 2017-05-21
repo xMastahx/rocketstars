@@ -35,6 +35,8 @@ body {
 	margin-bottom: 3%;
 }
 
+
+
 .description h2{
 	text-align: center;
 	color: #f2f2f2;
@@ -214,4 +216,9 @@ body {
 .Error h3 a:hover{
 	text-decoration: none;
 	color: blue;
+}
+
+a{
+	
+	color: white;	
 }

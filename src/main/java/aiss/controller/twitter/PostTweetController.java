@@ -47,45 +47,27 @@ public class PostTweetController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		RequestDispatcher rd = null;
-			
-		String summoner = request.getParameter("invotw");
-			if(summoner!=null){
-			LoLResource lol = new LoLResource();
-			Summoner invocador = lol.getSummoner(summoner);
-
-				ChampionMastery[] maestrias = lol.getChampionMastery(invocador.getId());
-				//response.getWriter().append("hey "+maestrias[0].getChampionLevel()+"    "+maestrias[0].getChampionPoints());
-				List<Champion> list = new ArrayList<Champion>();
-				for(int i=0;i<5;i++){
-					list.add(lol.getChampionData(maestrias[i].getChampionId(),true));
-				}
-				
-				
-				 String tweet = "Summoner: " + invocador.getName();
-				 
-				 Random randomGenerator = new Random();
-			     int urfLevel = randomGenerator.nextInt(1000);
-			     if (urfLevel == 666){
-			    	 tweet = tweet + "\n URF. Level: There's not";
-			     }
-			     else{
-			    	 for(int i=0;i<5;i++){
-			    		 tweet = tweet + "\n" + list.get(i).getName() + ". Level: " + maestrias[i].getChampionLevel();
-			    	 }
-			     }
-			     
-			     TwitterResource tw = new TwitterResource();
-			     tw.postTweet(tweet);
 		
+		String display = request.getParameter("tweet");
+		String[] displayArray = display.split(", ");
+		List<String> displayList = new ArrayList<String>();
+		for (String s : displayArray){
+			displayList.add(s.trim());
+		}
+		
+		String res = "";
+		for (String s : displayList){
+			res = res + "\n" + s;
+		}
+		res = res.replaceAll("\\[", "").replaceAll("\\]","");
+
+		 TwitterResource tw = new TwitterResource();
+	     tw.postTweet(res);
 		request.setAttribute("visibilidadtw", "true");
 
 		rd = request.getRequestDispatcher("/");
 		rd.forward(request, response);
-			}else{
-				rd = request.getRequestDispatcher("/error.jsp");
-
-			}
-			}
+	}
 
 
 	/**

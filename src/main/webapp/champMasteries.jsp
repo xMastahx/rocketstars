@@ -20,17 +20,14 @@
 		</c:forEach>
 		
 		
-		<form class="form" method="post" action="TelegramMasteriesController">
-			<input type="hidden" name="invo" value="${requestScope.summoner.name}"></input>
-			<input type="hidden" name="masteryinfo" value="${requestScope.masteryinfo}"></input>
-			
+		<form class="form" method="post" action="TelegramController">
+			<input type="hidden" name="telegram" value="${requestScope.telegram}"></input>			
      		<button class="btn" type="submit" name="req" value="tweet">Comparte tu resumen en Telegram!</button>
      	
 		</form> 
 		
-		<form class="form" method="post" action="PostTweetMasteriesController">
-					<input type="hidden" name="tweetmasteryinfo" value="${requestScope.tweetmasteryinfo}"></input>
-					<input type="hidden" name="invotw" value="${requestScope.summoner.name}"></input>
+		<form class="form" method="post" action="PostTweetController">
+					<input type="hidden" name="tweet" value="${requestScope.tweet}"></input>
      	<button class="btn" type="submit" name="req" value="tweet">Tweet this</button>
      	
 			</form> 
