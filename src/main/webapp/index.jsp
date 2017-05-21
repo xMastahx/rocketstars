@@ -19,6 +19,7 @@
 		<button class="btn" type="submit" name="req" value="masteries">Maestrias de campeones</button>
 	</form>
 	
+	
+	<p id="document"><a href="https://lolcoach-167923.appspot.com/docs/index.html"><Strong>Lol Coach API: Document</Strong></a></p>
 </body>
-<a href="https://lolcoach-167923.appspot.com/docs/index.html"><Strong>Lol Coach API</Strong></a>
 </html>

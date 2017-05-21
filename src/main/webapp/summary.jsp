@@ -29,9 +29,12 @@
 		</c:forEach>
 		
 		
-		<c:forEach items="${requestScope.runes}" var="rune">
-			<p class="runa"><c:out value="${rune}"/></p>
-		</c:forEach>
+		<div class="separa">
+			<h3 id="Statistics">Runas</h3>
+			<c:forEach items="${requestScope.runes}" var="rune">
+				<p class="runa"><c:out value="${rune}"/></p>
+			</c:forEach>
+		</div>
 		<form class="form" method="post" action="TelegramController">
 			<input type="hidden" name="telegram" value="${requestScope.telegram}"></input>
      		<button class="btn" type="submit" name="req" value="tweet">Comparte tu resumen en Telegram!</button>
