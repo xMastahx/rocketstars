@@ -5,7 +5,6 @@
 	<div id="banner"><h1 id="bannertext">League of Legends Stats</h1></div>
 	<div class="description">
 		<h2>LOL Stats, tu web de estadísticas del MOBA más popular</h2>
-		<p>Descripción de la página</p>
 	</div>
 	<div class="telegramShare" style="display: <c:if test="${empty requestScope.visibilidadtg}">none</c:if>"><p>¡Felicidades, lo has compartido por telegram!</p></div>
 	<div class="twitterShare" style="display: <c:if test="${empty requestScope.visibilidadtw}">none</c:if>"><p>¡Felicidades, lo has compartido por Twitter!</p></div>
